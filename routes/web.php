@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//PageController 
+Route::get('/',[PageController::class, 'index'])->name('index.page');
+Route::get('/about',[PageController::class, 'about'])->name('about.page');
+Route::get('/contact',[PageController::class, 'contact'])->name('contact.page');
+Route::get('/post/{slug}',[PageController::class, 'post'])->name('post.page');
+Route::get('/postdetail/{slug}',[PageController::class, 'postdetail'])->name('postdetail.page');
+Route::get('/service',[PageController::class, 'service'])->name('service.page');
+Route::get('/project',[PageController::class, 'project'])->name('project.page');
 
 //HomeController 
 Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page');
