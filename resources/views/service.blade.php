@@ -1,8 +1,12 @@
+<?php 
+    $title = 'Service';
+?>
+
 @extends('layouts.master')
 @section('content')
 
     <!-- Page Header Start -->
-        @include('layouts.master')
+        @include('layouts.pageHeader')
     <!-- Page Header End -->
 
 

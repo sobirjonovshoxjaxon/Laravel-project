@@ -1,3 +1,7 @@
+<?php 
+    $title = 'Contact';
+?>
+
 @extends('layouts.master')
 @section('content')
 

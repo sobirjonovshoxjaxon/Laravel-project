@@ -99,7 +99,7 @@
 
 
     <!-- Portfolio Start -->
-        @include('layouts.porfolio')
+        @include('layouts.portfolio')
     <!-- Portfolio End -->
 
 

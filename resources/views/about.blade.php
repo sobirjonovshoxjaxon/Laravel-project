@@ -1,3 +1,7 @@
+<?php 
+    $title = 'About';
+?>
+
 @extends('layouts.master')
 @section('content')
 

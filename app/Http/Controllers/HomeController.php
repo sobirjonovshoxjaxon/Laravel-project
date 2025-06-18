@@ -15,7 +15,7 @@ class HomeController extends Controller
             return to_route('dashboard');
         }elseif($usertype == 'admin'){
 
-            return 'Salom Admin Panelga xush kelibsiz';
+            return to_route('admin.index');
         }else{
 
             return redirect()->back();

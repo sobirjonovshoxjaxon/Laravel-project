@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ Route::get('/project',[PageController::class, 'project'])->name('project.page');
 //HomeController 
 Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page');
 
+//Laravel Breeze 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -39,3 +42,15 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//AdminController 
+Route::get('/admin/index',[AdminController::class, 'index'])->name('admin.index');
+Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page');
+
+
+//Resource Controllers
+
+Route::resources([
+
+    'category' => CategoryController::class,
+]);

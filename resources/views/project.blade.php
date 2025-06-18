@@ -1,3 +1,7 @@
+<?php 
+    $title = 'Project';
+?>
+
 @extends('layouts.master')
 @section('content')
 
@@ -7,7 +11,7 @@
 
 
         <!-- Portfolio Start -->
-            @include('layouts.porfolio')
+            @include('layouts.portfolio')
         <!-- Portfolio End -->
 
 @endsection

@@ -1,3 +1,7 @@
+<?php 
+    $title = 'Post title name';
+?>
+
 @extends('layouts.master')
 @section('content')
 
@@ -272,6 +276,5 @@
         </div>
     </div>
     <!-- Detail End -->
-
 
 @endsection
