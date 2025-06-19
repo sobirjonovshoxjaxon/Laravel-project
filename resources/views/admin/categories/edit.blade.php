@@ -11,14 +11,19 @@
 
 
                     <form action="{{ route('category.update',$category->id)}}" method="POST">
+                      @csrf 
+                      @method('PUT') 
+
                         <div class="form-group">
                           <label>Category</label>
                           <input type="text" class="form-control" name="category" value="{{ $category->category }}">
                         </div>
+
+                      <button class="btn btn-warning mr-1" type="submit">Edit</button>
+                      <button class="btn btn-secondary" type="reset">Reset</button>
                     </form>
                  
-                    <button class="btn btn-warning mr-1" type="submit">Edit</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
+                    
                   </div>
                 </div>
             </div>

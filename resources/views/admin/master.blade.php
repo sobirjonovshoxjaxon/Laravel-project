@@ -64,7 +64,7 @@
                   data-feather="briefcase"></i><span>Tables</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('category.index')}}">Categories</a></li>
-                <li><a class="nav-link" href="widget-data.html">Posts</a></li>
+                <li><a class="nav-link" href="{{ route('posts.index')}}">Posts</a></li>
                 <li><a class="nav-link" href="widget-data.html">Tags</a></li>
               </ul>
             </li>

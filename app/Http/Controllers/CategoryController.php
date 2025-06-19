@@ -30,6 +30,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+
+            'category' => 'required',
+       ]);
+
         $data = $request->all();
         $data['slug'] = Str::slug($request->category);
 
@@ -56,16 +61,25 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+       $request->validate([
+            'category' => 'required',
+       ]);
+
+       $data = $request->all(); 
+       $data['slug'] = Str::slug($request->category);
+
+       $category->update($data);
+       return to_route('category.index')->with('updated','Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back()->with('deleted','Category deleted successfully');
     }
 }

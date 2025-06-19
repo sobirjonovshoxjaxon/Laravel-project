@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,5 @@ Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page');
 Route::resources([
 
     'category' => CategoryController::class,
+    'posts' => PostController::class,
 ]);
