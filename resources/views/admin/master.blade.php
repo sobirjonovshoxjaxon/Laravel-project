@@ -65,7 +65,7 @@
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('category.index')}}">Categories</a></li>
                 <li><a class="nav-link" href="{{ route('posts.index')}}">Posts</a></li>
-                <li><a class="nav-link" href="widget-data.html">Tags</a></li>
+                <li><a class="nav-link" href="{{ route('tag.index')}}">Tags</a></li>
               </ul>
             </li>
           </ul>
