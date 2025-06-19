@@ -7,6 +7,11 @@
                     <h4>Category Table</h4>
                     <a href="{{ route('category.create')}}" class="btn btn-success">Create</a>
                   </div>
+
+                  @if(Session::has('created'))
+                    <div class="alert alert-success">{{ Session::get('created') }}</div>
+                  @endif
+
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered table-md">
@@ -16,21 +21,23 @@
                           <th>Slug</th>
                           <th colspan="3">Action</th>
                         </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Category</td>
-                          <td>Slug</td>
-                          <td>
-                            <a href="" class="btn btn-primary">Show</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-warning">Edit</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-danger">Delete</a>
-                          </td>
-                          
-                        </tr>
+
+                        @foreach($categories as $category)
+                          <tr>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->category }}</td>
+                            <td>{{ $category->slug }}</td>
+                            <td>
+                              <a href="{{ route('category.show',$category->id)}}" class="btn btn-primary">Show</a>
+                            </td>
+                            <td>
+                              <a href="{{ route('category.edit',$category->id)}}" class="btn btn-warning">Edit</a>
+                            </td>
+                            <td>
+                              <a href="" class="btn btn-danger">Delete</a>
+                            </td>
+                          </tr>
+                        @endforeach
                       </table>
                     </div>
                   </div>

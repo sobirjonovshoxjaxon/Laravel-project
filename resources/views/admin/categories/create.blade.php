@@ -8,13 +8,18 @@
                     <a href="{{ route('category.index')}}" class="btn btn-dark text-white">Back</a>
                   </div>
                   <div class="card-body">
-                    <div class="form-group">
-                      <label>Category</label>
-                      <input type="text" class="form-control">
-                    </div>
+
+                   <form action="{{ route('category.store')}}" method="POST">
+                    @csrf 
+
+                      <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" class="form-control" name="category">
+                      </div>
                  
-                    <button class="btn btn-success mr-1" type="submit">Create</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
+                      <button class="btn btn-success mr-1" type="submit">Create</button>
+                      <button class="btn btn-secondary" type="reset">Reset</button>
+                   </form>
                   </div>
                 </div>
             </div>
