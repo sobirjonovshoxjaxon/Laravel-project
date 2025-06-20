@@ -18,6 +18,8 @@ class PostFactory extends Factory
     {
 
         return [
+            'user_id' => 1,
+            'category_id' => rand(1,5),
             'title' => $title = fake()->sentence(3),
             'image' => "{{ asset ('assets/img/feature.jpg')}}",
             'short_content' => fake()->sentence(14),

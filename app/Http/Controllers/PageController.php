@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
 
 class PageController extends Controller
 {
     public function index(){
-        return view('index');
+
+        $posts = Post::latest()->limit(3)->get();
+        return view('index',compact('posts'));
     }
 
     public function about(){
@@ -26,8 +30,11 @@ class PageController extends Controller
         return view('post');
     }
 
-    public function postdetail(){
-        return view('postdetail');
+    public function postdetail($slug){
+        $post = Post::where('slug',$slug)->first();
+
+        $categories = Category::all();
+        return view('postdetail',compact('post','categories'));
     }
 
     public function contact(){
