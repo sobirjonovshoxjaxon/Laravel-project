@@ -12,6 +12,14 @@
                     <div class="alert alert-success">{{ Session::get('created') }}</div>
                   @endif
 
+                  @if(Session::has('updated'))
+                    <div class="alert alert-warning">{{ Session::get('updated') }}</div>
+                  @endif
+
+                  @if(Session::has('deleted'))
+                    <div class="alert alert-danger">{{ Session::get('deleted') }}</div>
+                  @endif
+
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered table-md">
@@ -21,17 +29,18 @@
                           <th colspan="3">Action</th>
                         </tr>
 
+                        @foreach($tags as $tag)
                           <tr>
-                            <td>1</td>
-                            <td>Tag name hello</td>
+                            <td>{{ $tag->id }}</td>
+                            <td>{{ $tag->tag }}</td>
                             <td>
-                              <a href="" class="btn btn-primary">Show</a>
+                              <a href="{{ route('tag.show',$tag->id)}}" class="btn btn-primary">Show</a>
                             </td>
                             <td>
-                              <a href="" class="btn btn-warning">Edit</a>
+                              <a href="{{ route('tag.edit',$tag->id)}}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                              <form action="" method="POST">
+                              <form action="{{ route('tag.destroy',$tag->id)}}" method="POST">
                                 @csrf 
                                 @method('DELETE')
 
@@ -39,6 +48,9 @@
                               </form>
                             </td>
                           </tr>
+
+                        @endforeach 
+
                       </table>
                     </div>
                   </div>

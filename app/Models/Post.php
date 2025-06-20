@@ -16,4 +16,24 @@ class Post extends Model
         'content',
         'slug',
     ];
+
+    //Connect User Model
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    //Connect Category Model
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    //Connect Comment Model
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    //Connect Tag Model 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
