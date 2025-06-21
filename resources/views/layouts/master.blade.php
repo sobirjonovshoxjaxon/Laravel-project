@@ -103,8 +103,8 @@
                                 </div>
                             </div>
 
-                            <a href="" class="nav-item nav-link">Special Posts</a>
-                            <a href="" class="nav-item nav-link">Popular Posts</a>
+                            <a href="{{ route('special.posts')}}" class="nav-item nav-link">Special Posts</a>
+                            <a href="{{ route('popular.posts')}}" class="nav-item nav-link">Popular Posts</a>
 
 
                             <a href="{{ route('contact.page')}}" class="nav-item nav-link">Contact</a>

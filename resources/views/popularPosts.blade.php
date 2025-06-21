@@ -1,5 +1,5 @@
 <?php 
-    $title = $category->category;
+    $title = 'Popular Posts';
 ?>
 
 @extends('layouts.master')
@@ -27,7 +27,7 @@
             </div>
             <div class="row">
 
-            @foreach($posts as $post)
+            @foreach($popularPosts as $post)
                 <div class="col-lg-4 col-md-6 mb-5">
                     <div class="position-relative mb-4">
                         <img class="img-fluid rounded w-100" src="{{ asset ('assets/img/'.$post->image)}}" alt="">
@@ -50,7 +50,6 @@
                
 
             </div>
-            {{ $posts->links('vendor.pagination.bootstrap-4') }}
 
         </div>
     </div>

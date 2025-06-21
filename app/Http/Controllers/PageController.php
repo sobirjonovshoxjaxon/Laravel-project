@@ -29,7 +29,8 @@ class PageController extends Controller
     public function post($slug){
 
         $category = Category::where('slug',$slug)->first();
-        return view('post',compact('category'));
+        $posts = $category->posts()->paginate(9);
+        return view('post',compact('posts','category'));
     }
 
     public function postdetail($slug){
@@ -54,5 +55,17 @@ class PageController extends Controller
 
     public function contact(){
         return view('contact');
+    }
+
+    public function specialPosts(){
+
+        $specialPosts = Post::where('is_special',1)->paginate(9);
+        return view('specialPosts',compact('specialPosts'));
+    }
+
+    public function popularPosts(){
+
+        $popularPosts = Post::orderBy('view','DESC')->limit(9)->get();
+        return view('popularPosts',compact('popularPosts'));
     }
 }

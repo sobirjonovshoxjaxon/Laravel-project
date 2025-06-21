@@ -29,6 +29,8 @@ Route::get('/post/{slug}',[PageController::class, 'post'])->name('post.page');
 Route::get('/postdetail/{slug}',[PageController::class, 'postdetail'])->name('postdetail.page');
 Route::get('/service',[PageController::class, 'service'])->name('service.page');
 Route::get('/project',[PageController::class, 'project'])->name('project.page');
+Route::get('/special/posts',[PageController::class, 'specialPosts'])->name('special.posts');
+Route::get('/popular/posts',[PageController::class, 'popularPosts'])->name('popular.posts');
 
 //HomeController 
 Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page');

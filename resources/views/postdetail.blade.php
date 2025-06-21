@@ -26,7 +26,7 @@
                              <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="{{ route('post.page',$post->category->slug)}}">{{ $post->category->category }}</a>
                         </div>
-                        <h1 class="section-title mb-3">{{ $post->short_content }}</h1>
+                        <h4 class="section-title mb-3">{{ $post->short_content }}</h4>
                     </div>
 
                     <div class="mb-5">

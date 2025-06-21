@@ -98,12 +98,12 @@ class PostController extends Controller
         }
 
         if(empty($request->is_special)){
-            $data['is_special'] = 0,
+            $data['is_special'] = 0;
         }
 
         $post->update($data);
         $post->tags()->sync($request->tags);
-        
+
         return to_route('posts.index')->with('updated','Post updated successfully');
     }
 
