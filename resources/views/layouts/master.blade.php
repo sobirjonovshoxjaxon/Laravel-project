@@ -76,17 +76,37 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
+
                             <a href="{{ route('index.page')}}" class="nav-item nav-link active">Home</a>
-                            <a href="{{ route('about.page')}}" class="nav-item nav-link">About</a>
-                            <a href="{{ route('service.page')}}" class="nav-item nav-link">Service</a>
-                            <a href="{{ route('project.page')}}" class="nav-item nav-link">Project</a>
+            
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="" class="dropdown-item">Latest Blog</a>
-                                    <a href="" class="dropdown-item">Blog Detail</a>
+
+                                    @foreach($categories as $category)
+                                        <a href="{{ route('post.page',$category->slug)}}" class="dropdown-item">{{ $category->category }}</a>
+                                    @endforeach
+
+                                    
+
                                 </div>
                             </div>
+
+                            <div class="nav-item dropdown">
+                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">About Us</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+
+                                    <a href="{{ route('about.page')}}" class="dropdown-item">About</a>
+                                    <a href="{{ route('service.page')}}" class="dropdown-item">Service</a>
+                                    <a href="{{ route('project.page')}}" class="dropdown-item">Project</a>
+
+                                </div>
+                            </div>
+
+                            <a href="" class="nav-item nav-link">Special Posts</a>
+                            <a href="" class="nav-item nav-link">Popular Posts</a>
+
+
                             <a href="{{ route('contact.page')}}" class="nav-item nav-link">Contact</a>
                         </div>
                         <a href="{{ route('login')}}" class="btn btn-primary mr-3 d-none d-lg-block">Login</a>
@@ -194,6 +214,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset ('assets/js/main.js')}}"></script>
+
+
 </body>
 
 </html>

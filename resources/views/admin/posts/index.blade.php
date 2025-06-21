@@ -48,7 +48,7 @@
                               <a href="{{ route('posts.edit',$post->id)}}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                              <form action="{{ route('posts.destroy',$post->id)}}" method="POST">
+                              <form onsubmit="return confirm('Siz haqiqatdan ham postni o\'chirmoqchimisiz?')" action="{{ route('posts.destroy',$post->id)}}" method="POST">
                                 @csrf 
                                 @method('DELETE')
 

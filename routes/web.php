@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,5 @@ Route::resources([
     'category' => CategoryController::class,
     'posts' => PostController::class,
     'tag' => TagController::class,
+    'comment' => CommentController::class,
 ]);

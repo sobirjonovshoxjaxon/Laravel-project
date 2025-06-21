@@ -23,6 +23,8 @@
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
                             <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="">January 01, 2045</a>
+                             <span class="text-primary px-2">|</span>
+                            <a class="text-secondary text-uppercase font-weight-medium" href="{{ route('post.page',$post->category->slug)}}">{{ $post->category->category }}</a>
                         </div>
                         <h1 class="section-title mb-3">{{ $post->short_content }}</h1>
                     </div>
@@ -34,38 +36,26 @@
                     </div>
 
                     <div class="mb-5">
-                        <h3 class="mb-4 section-title">3 Comments</h3>
-                        <div class="media mb-4">
-                            <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
-                            <div class="media-body">
-                                <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                <button class="btn btn-sm btn-light">Reply</button>
-                            </div>
-                        </div>
-                        <div class="media mb-4">
-                            <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
-                            <div class="media-body">
-                                <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                <button class="btn btn-sm btn-light">Reply</button>
-                                <div class="media mt-4">
-                                    <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1"
-                                        style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                        <button class="btn btn-sm btn-light">Reply</button>
-                                    </div>
+                        <h3 class="mb-4 section-title">{{ $post->comments->count() }} Comments</h3>
+
+                        @foreach($post->comments as $comment)
+                            <div class="media mb-4">
+                                <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
+                                <div class="media-body">
+                                    <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
+                                    <p>{{ $comment->body }}</p>
+                                    <button class="btn btn-sm btn-light">Reply</button>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+
                     </div>
 
                     <div class="bg-light rounded p-5">
-                        <h3 class="mb-4 section-title">Leave a comment</h3>
-                        <form>
-                            <div class="form-row">
+                        <h3 class="mb-4 section-title">Izohni qoldiring</h3>
+                        <form action="{{ route('comment.store')}}" method="POST">
+                            @csrf 
+                            <!-- <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="name">Name *</label>
                                     <input type="text" class="form-control" id="name">
@@ -78,14 +68,15 @@
                             <div class="form-group">
                                 <label for="website">Website</label>
                                 <input type="url" class="form-control" id="website">
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="message">Xabar</label>
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <textarea id="message" cols="30" rows="5" class="form-control" name="body"></textarea>
                             </div>
                             <div class="form-group mb-0">
-                                <input type="submit" value="Leave Comment" class="btn btn-primary">
+                                <input type="submit" value="Submit" class="btn btn-primary">
                             </div>
                         </form>
                     </div>
@@ -115,97 +106,40 @@
 
                             @foreach($categories as $category)
                                 <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>{{ $category->category }}</a>
-                                    <span class="badge badge-primary badge-pill">150</span>
+                                    <a class="text-dark" href="{{ route('post.page',$category->slug)}}"><i class="fa fa-angle-right text-secondary mr-2"></i>{{ $category->category }}</a>
+                                    <span class="badge badge-primary badge-pill">{{ $category->posts->count() }}</span>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="mb-5">
-                        <img src="{{ asset ('assets/img/blog-1.jpg')}}" alt="" class="img-fluid rounded">
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="mb-4 section-title">Recent Post</h3>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="{{ asset ('assets/img/blog-1.jpg')}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
+                        <h3 class="mb-4 section-title">O'xshash Postlar</h3>
+
+                        @foreach($relatedPosts as $post)
+                            <div class="d-flex align-items-center border-bottom mb-3 pb-3">
+                                <img class="img-fluid rounded" src="{{ asset ('assets/img/'.$post->image)}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                                <div class="d-flex flex-column pl-3">
+                                    <a class="text-dark mb-2" href="{{ route('postdetail.page',$post->slug) }}">{{ $post->title }}</a>
+                                    <div class="d-flex">
+                                        <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
+                                        <small class="text-primary px-2">|</small>
+                                        <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="{{ asset ('assets/img/blog-2.jpg')}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="{{ asset ('assets/img/blog-3.jpg')}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="{{ asset ('assets/img/blog-1.jpg')}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid rounded" src="{{ asset ('assets/img/blog-2.jpg')}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <img src="{{ asset ('assets/img/blog-2.jpg')}}" alt="" class="img-fluid rounded">
+                        @endforeach
+                        
                     </div>
                     <div class="mb-5">
                         <h3 class="mb-4 section-title">Tag Cloud</h3>
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-outline-secondary m-1">Design</a>
-                            <a href="" class="btn btn-outline-secondary m-1">Development</a>
-                            <a href="" class="btn btn-outline-secondary m-1">Marketing</a>
-                            <a href="" class="btn btn-outline-secondary m-1">SEO</a>
-                            <a href="" class="btn btn-outline-secondary m-1">Writing</a>
-                            <a href="" class="btn btn-outline-secondary m-1">Consulting</a>
+
+                        @foreach($post->tags as $tag)
+                            <a href="" class="btn btn-outline-secondary m-1">{{ $tag->tag }}</a>
+                        @endforeach
                         </div>
                     </div>
-                    <div class="mb-5">
-                        <img src="{{ asset ('assets/img/blog-3.jpg')}}" alt="" class="img-fluid rounded">
-                    </div>
-                    <div>
-                        <h3 class="mb-4 section-title">Plain Text</h3>
-                        Aliquyam sed lorem stet diam dolor sed ut sit. Ut sanctus erat ea est aliquyam dolor et. Et no
-                        consetetur eos labore ea erat voluptua et. Et aliquyam dolore sed erat. Magna sanctus sed eos
-                        tempor
-                        rebum dolor, tempor takimata clita sit et elitr ut eirmod.
-                    </div>
+                   
                 </div>
             </div>
         </div>

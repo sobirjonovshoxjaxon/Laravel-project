@@ -40,7 +40,7 @@
                               <a href="{{ route('tag.edit',$tag->id)}}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                              <form action="{{ route('tag.destroy',$tag->id)}}" method="POST">
+                              <form onsubmit="return confirm('Siz haqiqatdan ham tegni o\'chirmoqchimisiz')" action="{{ route('tag.destroy',$tag->id)}}" method="POST">
                                 @csrf 
                                 @method('DELETE')
 

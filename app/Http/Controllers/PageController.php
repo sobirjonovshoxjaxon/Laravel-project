@@ -26,15 +26,30 @@ class PageController extends Controller
         return view('project');
     }
 
-    public function post(){
-        return view('post');
+    public function post($slug){
+
+        $category = Category::where('slug',$slug)->first();
+        return view('post',compact('category'));
     }
 
     public function postdetail($slug){
+
         $post = Post::where('slug',$slug)->first();
 
         $categories = Category::all();
-        return view('postdetail',compact('post','categories'));
+
+        //Related Posts 
+        $relatedPosts = Post::where('category_id',$post->category_id)
+        ->where('id','!=',$post->id)
+        ->latest()
+        ->limit(5)
+        ->get();
+
+        //View 
+        $post->increment('view');
+        $post->save();
+
+        return view('postdetail',compact('post','categories','relatedPosts'));
     }
 
     public function contact(){

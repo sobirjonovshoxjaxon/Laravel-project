@@ -43,6 +43,33 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                       </div>
+
+                      <div class="form-group">
+                        <input class=" ml-1 form-check-input" type="checkbox" id="gridCheck" name="is_special" value="1">
+                        <label class="ml-4 form-check-label" for="gridCheck">
+                          Is special ?
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Tags</label>
+                        <select style="width: 100%" class="js-example-basic-multiple" name="tags[]" multiple="multiple">
+                          @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Category</label>
+                        <select name="category_id" class="form-control">
+                          <option selected>Choose...</option>
+                          @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+
                  
                       <button class="btn btn-success mr-1" type="submit">Create</button>
                       <button class="btn btn-secondary" type="reset">Reset</button>

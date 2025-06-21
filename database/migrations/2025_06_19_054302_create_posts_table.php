@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('short_content');
             $table->text('content');
             $table->string('slug')->unique();
+            $table->string('is_special')->default(0);
+            $table->integer('view')->default(0);
             $table->timestamps();
         });
     }

@@ -42,7 +42,7 @@
                               <a href="{{ route('category.edit',$category->id)}}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                              <form action="{{ route('category.destroy',$category->id)}}" method="POST">
+                              <form onsubmit="return confirm('Kategoriyani o\'chirishni haqiqatdan ham istaysizmi?')" action="{{ route('category.destroy',$category->id)}}" method="POST">
                                 @csrf 
                                 @method('DELETE')
 

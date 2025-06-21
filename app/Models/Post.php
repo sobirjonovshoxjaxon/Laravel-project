@@ -15,6 +15,10 @@ class Post extends Model
         'short_content',
         'content',
         'slug',
+        'user_id',
+        'category_id',
+        'is_special',
+        'view',
     ];
 
     //Connect User Model

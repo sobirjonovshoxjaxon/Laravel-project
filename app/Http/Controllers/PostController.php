@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -23,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.create',compact('categories','tags'));
     }
 
     /**
@@ -44,7 +48,11 @@ class PostController extends Controller
             $data['image'] = $fileName;
         }
 
-        Post::create($data);
+        $data['user_id'] = 1;
+
+        $post = Post::create($data);
+        $post->tags()->attach($request->tags);
+        
         return to_route('posts.index')->with('created','Post created successfully');
     }
 
@@ -61,7 +69,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit',compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.edit',compact('post','categories','tags'));
     }
 
     /**
@@ -87,7 +97,13 @@ class PostController extends Controller
             $data['image'] = $fileName;
         }
 
+        if(empty($request->is_special)){
+            $data['is_special'] = 0,
+        }
+
         $post->update($data);
+        $post->tags()->sync($request->tags);
+        
         return to_route('posts.index')->with('updated','Post updated successfully');
     }
 
@@ -101,7 +117,9 @@ class PostController extends Controller
             unlink($image);
         }
 
+        $post->tags()->detach();
         $post->delete();
+       
         return redirect()->back()->with('deleted','Post deleted successfully');
     }
 }

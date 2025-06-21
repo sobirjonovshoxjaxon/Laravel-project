@@ -11,6 +11,8 @@
     <p><b>Short_content: </b>{{ $post->short_content }}</p>
     <p><b>Content: </b>{{ $post->content }}</p>
     <p><b>Slug: </b>{{ $post->slug}}</p>
+    <p><b>View: </b>{{ $post->view }}</p>
+    <p><b>is_special: </b>{{ $post->is_special }}</p>
 
     <a href="{{ route('posts.index')}}" class="btn btn-dark text-white">Back</a>
 
