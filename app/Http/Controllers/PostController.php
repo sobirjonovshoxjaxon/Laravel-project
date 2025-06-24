@@ -11,6 +11,14 @@ use App\Models\Tag;
 
 class PostController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +56,7 @@ class PostController extends Controller
             $data['image'] = $fileName;
         }
 
-        $data['user_id'] = 1;
+        $data['user_id'] = auth()->user()->id;
 
         $post = Post::create($data);
         $post->tags()->attach($request->tags);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -68,4 +69,5 @@ class PageController extends Controller
         $popularPosts = Post::orderBy('view','DESC')->limit(9)->get();
         return view('popularPosts',compact('popularPosts'));
     }
+
 }

@@ -38,7 +38,7 @@ class CommentController extends Controller
        Comment::create([
             'body' => $request->body,
             'post_id' => $request->post_id,
-            'user_id' => 1,
+            'user_id' => auth()->id(),
        ]);
 
        return redirect()->back()->with('successfully','Xabar muvaffaqiyatli yuklandi');

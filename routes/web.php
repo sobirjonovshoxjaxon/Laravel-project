@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,16 @@ Route::get('/project',[PageController::class, 'project'])->name('project.page');
 Route::get('/special/posts',[PageController::class, 'specialPosts'])->name('special.posts');
 Route::get('/popular/posts',[PageController::class, 'popularPosts'])->name('popular.posts');
 
+
+//AuthController
+Route::get('/register/page',[AuthController::class, 'registerPage'])->name('register.page');
+Route::post('/register/save',[AuthController::class, 'registerSave'])->name('register.save');
+
+Route::get('/login/page',[AuthController::class, 'loginPage'])->name('login.page');
+Route::post('/login/check',[AuthController::class, 'loginCheck'])->name('login.check');
+
 //HomeController 
-Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page');
+Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page')->middleware('auth');
 
 //Laravel Breeze 
 Route::get('/dashboard', function () {
@@ -49,12 +58,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //AdminController 
-Route::get('/admin/index',[AdminController::class, 'index'])->name('admin.index');
-Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page');
+Route::get('/admin/index',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page')->middleware('auth');
 
 
 //Resource Controllers
-
 Route::resources([
 
     'category' => CategoryController::class,
@@ -62,3 +70,5 @@ Route::resources([
     'tag' => TagController::class,
     'comment' => CommentController::class,
 ]);
+
+
