@@ -134,7 +134,7 @@
 
                         @foreach($post->tags as $tag)
                             <a href="" class="btn btn-outline-secondary m-1">{{ $tag->tag }}</a>
-                        @endforeach
+                        @endforeach 
                         </div>
                     </div>
                    

@@ -65,6 +65,19 @@
                                 </div>
                             </div>
 
+                                    <div class="form-group">
+
+                                        <strong>ReCaptcha:</strong>
+
+                                        <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+
+                                        @if ($errors->has('g-recaptcha-response'))
+
+                                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+
+                                        @endif
+
+                                    </div>
 
                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                 <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Register</button>
@@ -89,5 +102,6 @@
                 </div>
             </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

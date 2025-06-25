@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     public function loginCheck(Request $request){
 
-       $credentials = $request->validate([
+         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
@@ -44,6 +44,7 @@ class AuthController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
+
 }
 
  

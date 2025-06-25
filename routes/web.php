@@ -37,7 +37,6 @@ Route::get('/popular/posts',[PageController::class, 'popularPosts'])->name('popu
 //AuthController
 Route::get('/register/page',[AuthController::class, 'registerPage'])->name('register.page');
 Route::post('/register/save',[AuthController::class, 'registerSave'])->name('register.save');
-
 Route::get('/login/page',[AuthController::class, 'loginPage'])->name('login.page');
 Route::post('/login/check',[AuthController::class, 'loginCheck'])->name('login.check');
 
@@ -60,6 +59,7 @@ require __DIR__.'/auth.php';
 //AdminController 
 Route::get('/admin/index',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page')->middleware('auth');
+
 
 
 //Resource Controllers

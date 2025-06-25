@@ -5,7 +5,10 @@
                 <div class="card">
                   <div class="card-header">
                     <h4>Post Table</h4>
-                    <a href="{{ route('posts.create')}}" class="btn btn-success">Create</a>
+
+                    @auth 
+                      <a href="{{ route('posts.create')}}" class="btn btn-success">Create</a>
+                    @endauth
                   </div>
 
                     @if(Session::has('created'))
@@ -41,20 +44,27 @@
                             </td>
                             <td>{{  Str::limit($post->short_content,25) }}</td>
                             <td>{{ Str::limit($post->content,50) }}</td>
+
+                          @auth
                             <td>
                               <a href="{{ route('posts.show',$post->id)}}" class="btn btn-primary">Show</a>
                             </td>
-                            <td>
-                              <a href="{{ route('posts.edit',$post->id)}}" class="btn btn-warning">Edit</a>
-                            </td>
-                            <td>
-                              <form onsubmit="return confirm('Siz haqiqatdan ham postni o\'chirmoqchimisiz?')" action="{{ route('posts.destroy',$post->id)}}" method="POST">
-                                @csrf 
-                                @method('DELETE')
 
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                              </form>
-                            </td>
+                            @canany(['update', 'delete'], $post)
+                              <td>
+                                <a href="{{ route('posts.edit',$post->id)}}" class="btn btn-warning">Edit</a>
+                              </td>
+                              <td>
+                                <form onsubmit="return confirm('Siz haqiqatdan ham postni o\'chirmoqchimisiz?')" action="{{ route('posts.destroy',$post->id)}}" method="POST">
+                                  @csrf 
+                                  @method('DELETE')
+
+                                  <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                              </td>
+                            @endcanany
+                          @endauth
+
                           </tr>
                         @endforeach
 

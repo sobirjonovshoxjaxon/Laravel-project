@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Gate;
+
 
 class PostController extends Controller
 {
@@ -15,6 +17,7 @@ class PostController extends Controller
     public function __construct(){
 
         $this->middleware('auth');
+        $this->authorizeResource(Post::class, 'post');
     }
 
 

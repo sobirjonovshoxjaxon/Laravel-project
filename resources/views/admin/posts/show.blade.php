@@ -13,6 +13,7 @@
     <p><b>Slug: </b>{{ $post->slug}}</p>
     <p><b>View: </b>{{ $post->view }}</p>
     <p><b>is_special: </b>{{ $post->is_special }}</p>
+    <p><b>Post Author: </b>{{ $post->user->name }}</p>
 
     <a href="{{ route('posts.index')}}" class="btn btn-dark text-white">Back</a>
 
