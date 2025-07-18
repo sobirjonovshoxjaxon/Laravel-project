@@ -28,10 +28,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with(compact('categories'));
         });
 
-
-
-
-
         Paginator::useBootstrap();
     }
 }

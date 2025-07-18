@@ -66,7 +66,7 @@ class PageController extends Controller
 
     public function popularPosts(){
 
-        $popularPosts = Post::orderBy('view','DESC')->limit(9)->get();
+        $popularPosts = Post::orderBy('view','DESC')->limit(9)->paginate(9);
         return view('popularPosts',compact('popularPosts'));
     }
 

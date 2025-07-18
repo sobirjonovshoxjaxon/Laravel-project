@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -35,13 +36,8 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-
-            'category' => 'required',
-       ]);
-
         $data = $request->all();
         $data['slug'] = Str::slug($request->category);
 
@@ -68,12 +64,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-       $request->validate([
-            'category' => 'required',
-       ]);
-
        $data = $request->all(); 
        $data['slug'] = Str::slug($request->category);
 

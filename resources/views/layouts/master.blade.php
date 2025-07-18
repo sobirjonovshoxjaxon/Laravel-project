@@ -17,6 +17,7 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset ('assets/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
@@ -115,7 +116,6 @@
                             <a href="{{ route('logout.page')}}" class="btn btn-dark mr-3 d-none d-lg-block">Logout</a>
                         @else
                             <a href="{{ route('register.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Register</a>
-                            <a href="{{ route('login.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Login</a>
                         @endauth
 
                     </div>

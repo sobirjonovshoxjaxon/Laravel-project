@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comment;
+use App\Models\User;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $users = User::paginate(25);
+        return view('admin.user.index',compact('users'));
     }
 
     /**
@@ -28,28 +33,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
-
-        'body' => 'required',
-        'post_id' => 'required',
-       ]); 
-
-
-        Comment::create([
-            'body' => $request->body,
-            'post_id' => $request->post_id,
-            'user_id' => auth()->id(),
-       ]);
-
-       return redirect()->back()->with('successfully','Xabar muvaffaqiyatli yuklandi');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('admin.user.show',compact('user'));
     }
 
     /**
@@ -71,8 +63,9 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->back()->with('deleted','Foydalanuvchi muvaffaqiyatli o\'chdi');
     }
 }

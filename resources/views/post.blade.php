@@ -32,8 +32,8 @@
                     <div class="position-relative mb-4">
                         <img class="img-fluid rounded w-100" src="{{ asset ('assets/img/'.$post->image)}}" alt="">
                         <div class="blog-date">
-                            <h4 class="font-weight-bold mb-n1">01</h4>
-                            <small class="text-white text-uppercase">Jan</small>
+                            <h4 class="font-weight-bold mb-n1">{{ $post->created_at->format('D')}}</h4>
+                            <small class="text-white text-uppercase">{{ $post->updated_at->format('M')}}</small>
                         </div>
                     </div>
                     <div class="d-flex mb-2">

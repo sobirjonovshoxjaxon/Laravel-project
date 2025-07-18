@@ -25,6 +25,11 @@
                             <a class="text-secondary text-uppercase font-weight-medium" href="">January 01, 2045</a>
                              <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="{{ route('post.page',$post->category->slug)}}">{{ $post->category->category }}</a>
+                              <span class="text-primary px-2">|</span>
+                            <div>
+                                <i class="fa-solid fa-eye"></i>
+                                {{ $post->view }}
+                            </div>
                         </div>
                         <h4 class="section-title mb-3">{{ $post->short_content }}</h4>
                     </div>

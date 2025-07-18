@@ -23,28 +23,6 @@ class AuthController extends Controller
         return to_route('index.page');
     }
 
-    public function loginPage(){
-        return view('login');
-    }
-
-    public function loginCheck(Request $request){
-
-         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
- 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('/');
-        }
- 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    }
-
 }
 
  

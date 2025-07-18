@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page')->m
 //Resource Controllers
 Route::resources([
 
+    'user' => UserController::class,
     'category' => CategoryController::class,
     'posts' => PostController::class,
     'tag' => TagController::class,

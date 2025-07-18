@@ -15,6 +15,9 @@
                       <div class="form-group">
                         <label>Category</label>
                         <input type="text" class="form-control" name="category">
+                        @error('category')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
                  
                       <button class="btn btn-success mr-1" type="submit">Create</button>

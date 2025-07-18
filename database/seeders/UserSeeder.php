@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'shoxjaxon',
             'email' => 'shohjahonsobirjonov76@gmail.com',
             'password' => Hash::make('12345678'),
+            'usertype' => 'admin',
         ]);
     }
 }

@@ -11,7 +11,7 @@ class CategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'category' => 'required',
+        ];
+    }
+
+    public function messages(){
+
+        return [
+            'category.required' => 'Kategoriyani kiriting',
         ];
     }
 }

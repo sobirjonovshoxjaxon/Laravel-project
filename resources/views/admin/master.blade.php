@@ -56,7 +56,7 @@
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+            <h5 class="menu-header ml-3">{{ auth()->user()->name}}</h5>
             <li class="dropdown active">
               <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
@@ -64,6 +64,7 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>Tables</span></a>
               <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ route('user.index')}}">Users</a></li>
                 <li><a class="nav-link" href="{{ route('category.index')}}">Categories</a></li>
                 <li><a class="nav-link" href="{{ route('posts.index')}}">Posts</a></li>
                 <li><a class="nav-link" href="{{ route('tag.index')}}">Tags</a></li>
