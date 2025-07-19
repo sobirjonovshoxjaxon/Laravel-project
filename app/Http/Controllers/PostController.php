@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Gate;
+use App\Events\PostCreated;
 
 
 class PostController extends Controller
@@ -63,6 +64,9 @@ class PostController extends Controller
 
         $post = Post::create($data);
         $post->tags()->attach($request->tags);
+
+        //Event 
+        PostCreated::dispatch($post);
         
         return to_route('posts.index')->with('created','Post created successfully');
     }
