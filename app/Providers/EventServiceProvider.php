@@ -8,8 +8,14 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 
 use App\Events\PostCreated;
-use App\Listeners\SendEmailToUser;
-use App\Listeners\SendNotificationToAdmin;
+use App\Listeners\SendEmailToUserPostCreated;
+use App\Listeners\SendNotificationToAdminPostCreated;
+use App\Events\PostUpdated;
+use App\Listeners\SendEmailToUserPostUpdated;
+use App\Listeners\SendNotificationToAdminPostUpdated;
+use App\Events\PostDeleted;
+use App\Listeners\SendEmailToUserPostDeleted;
+use App\Listeners\SendNotificationToAdminPostDeleted;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,9 +30,19 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         PostCreated::class => [
-            SendEmailToUser::class,
-            SendNotificationToAdmin::class
-        ]
+            SendEmailToUserPostCreated::class,
+            SendNotificationToAdminPostCreated::class
+        ],
+
+        PostUpdated::class => [
+            SendEmailToUserPostUpdated::class,
+            SendNotificationToAdminPostUpdated::class,
+        ],
+
+        PostDeleted::class => [
+            SendEmailToUserPostDeleted::class,
+            SendNotificationToAdminPostDeleted::class,
+        ],
     ];
 
     /**

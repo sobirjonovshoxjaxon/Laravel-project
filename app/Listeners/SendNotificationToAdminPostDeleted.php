@@ -2,12 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\PostCreated;
+use App\Events\PostDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class SendNotificationToAdmin
+
+class SendNotificationToAdminPostDeleted
 {
     /**
      * Create the event listener.
@@ -20,8 +21,8 @@ class SendNotificationToAdmin
     /**
      * Handle the event.
      */
-    public function handle(PostCreated $event): void
+    public function handle(PostDeleted $event): void
     {
-        Log::alert('Foydalanuvchiga xabarnoma jo\'natildi.');
+        Log::alert('Foydalanuvchiga Post o\'chirildi haqida xabarnoma jo\'natildi');
     }
 }

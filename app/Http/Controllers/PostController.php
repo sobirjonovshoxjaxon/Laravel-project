@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Gate;
 use App\Events\PostCreated;
+use App\Events\PostUpdated;
+use App\Events\PostDeleted;
 
 
 class PostController extends Controller
@@ -119,6 +121,9 @@ class PostController extends Controller
         $post->update($data);
         $post->tags()->sync($request->tags);
 
+        //Event 
+        PostUpdated::dispatch($post);
+
         return to_route('posts.index')->with('updated','Post updated successfully');
     }
 
@@ -134,6 +139,9 @@ class PostController extends Controller
 
         $post->tags()->detach();
         $post->delete();
+
+        //Event 
+        PostDeleted::dispatch($post);
        
         return redirect()->back()->with('deleted','Post deleted successfully');
     }
