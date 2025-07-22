@@ -43,6 +43,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->category);
 
+        $data['user_id'] = auth()->id();
         Category::create($data);
         return redirect()->route('category.index')->with('created','Category created successfully');
     }
