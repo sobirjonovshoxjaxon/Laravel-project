@@ -21,7 +21,7 @@ class PostController extends Controller
 
         $this->middleware('auth');
         $this->authorizeResource(Post::class, 'post');
-        $this->middleware('password.confirm')->only('edit');
+        $this->middleware('password.confirm')->except(['index','show']);
        
     }
 
