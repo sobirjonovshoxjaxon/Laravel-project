@@ -15,26 +15,31 @@ class CategorySeeder extends Seeder
     {
 
         Category::create([
+            'user_id' => '1',
             'category' => 'Web dasturlash',
             'slug' => 'web-dasturlash'
         ]);
 
         Category::create([
+            'user_id' => '1',
             'category' => 'Gaming dasturlash',
             'slug' => 'gaming-dasturlash',
         ]);
 
         Category::create([
+            'user_id' => '1',
             'category' => 'Android dasturlash',
             'slug' => 'android-dasturlash',
         ]);
 
         Category::create([
+            'user_id' => '1',
             'category' => 'Texnologiya',
             'slug' => 'texnologiya',
         ]);
 
         Category::create([
+            'user_id' => '1',
             'category' => 'Desktop dasturlash',
             'slug' => 'desktop-dasturlash',
         ]);

@@ -14,6 +14,8 @@ class TagController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+        $this->authorizeResource(Tag::class, 'tag');
+        $this->middleware('password.confirm')->except(['index','show']);
     }
 
 

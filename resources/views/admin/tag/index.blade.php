@@ -36,17 +36,20 @@
                             <td>
                               <a href="{{ route('tag.show',$tag->id)}}" class="btn btn-primary">Show</a>
                             </td>
-                            <td>
-                              <a href="{{ route('tag.edit',$tag->id)}}" class="btn btn-warning">Edit</a>
-                            </td>
-                            <td>
-                              <form onsubmit="return confirm('Siz haqiqatdan ham tegni o\'chirmoqchimisiz')" action="{{ route('tag.destroy',$tag->id)}}" method="POST">
-                                @csrf 
-                                @method('DELETE')
 
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                              </form>
-                            </td>
+                            @canany(['update','delete'], $tag)
+                              <td>
+                                <a href="{{ route('tag.edit',$tag->id)}}" class="btn btn-warning">Edit</a>
+                              </td>
+                              <td>
+                                <form onsubmit="return confirm('Siz haqiqatdan ham tegni o\'chirmoqchimisiz')" action="{{ route('tag.destroy',$tag->id)}}" method="POST">
+                                  @csrf 
+                                  @method('DELETE')
+
+                                  <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                              </td>
+                            @endcanany
                           </tr>
 
                         @endforeach 

@@ -38,17 +38,21 @@
                             <td>
                               <a href="{{ route('category.show',$category->id)}}" class="btn btn-primary">Show</a>
                             </td>
-                            <td>
-                              <a href="{{ route('category.edit',$category->id)}}" class="btn btn-warning">Edit</a>
-                            </td>
-                            <td>
-                              <form onsubmit="return confirm('Kategoriyani o\'chirishni haqiqatdan ham istaysizmi?')" action="{{ route('category.destroy',$category->id)}}" method="POST">
-                                @csrf 
-                                @method('DELETE')
 
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                              </form>
-                            </td>
+                            @canany(['update','delete'], $category)
+                              <td>
+                                <a href="{{ route('category.edit',$category->id)}}" class="btn btn-warning">Edit</a>
+                              </td>
+                              <td>
+                                <form onsubmit="return confirm('Kategoriyani o\'chirishni haqiqatdan ham istaysizmi?')" action="{{ route('category.destroy',$category->id)}}" method="POST">
+                                  @csrf 
+                                  @method('DELETE')
+
+                                  <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                              </td>
+                            @endcanany 
+
                           </tr>
                         @endforeach
                       </table>

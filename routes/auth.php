@@ -15,12 +15,12 @@ Route::middleware('guest')->group(function () {
     Route::get('sdjffkfkeurofnvfkd/shohjahon/register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
-    Route::post('sdjffkfkeurofnvfkd/shohjahon/register', [RegisteredUserController::class, 'store']);
+    Route::post('sdjffkfkeurofnvfkd/shohjahon/register', [RegisteredUserController::class, 'store'])->middleware('throttle:3');
 
     Route::get('sdjffkfkeurofnvfkd/shohjahon/login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 
-    Route::post('sdjffkfkeurofnvfkd/shohjahon/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('sdjffkfkeurofnvfkd/shohjahon/login', [AuthenticatedSessionController::class, 'store'])->middleware('throttle:3');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');

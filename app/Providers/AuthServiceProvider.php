@@ -6,6 +6,10 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Models\Post;
 use App\Models\User;
 use App\Policies\PostPolicy;
+use App\Models\Category;
+use App\Policies\CategoryPolicy;
+use App\Models\Tag;
+use App\Policies\TagPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +19,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        
+        Category::class => CategoryPolicy::class,
+        Tag::class => TagPolicy::class,
+        Comment::class => CommentPolicy::class,
         Post::class => PostPolicy::class,
     ];
 

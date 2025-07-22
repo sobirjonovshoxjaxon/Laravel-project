@@ -40,6 +40,7 @@
                     
                     </div>
 
+
                     <div class="mb-5">
                         <h3 class="mb-4 section-title">{{ $post->comments->count() }} Comments</h3>
 
@@ -47,7 +48,58 @@
                             <div class="media mb-4">
                                 <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
                                 <div class="media-body">
-                                    <h6>{{ $comment->user->name }} <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
+                                    <h6>{{ $comment->user->name }} <small><i>01 Jan 2045 at 12:00pm</i></small>
+                                    
+
+                                    @canany(['update','delete'],$comment)
+                                            <a href="{{ route('comment.edit',$comment->id)}}" style="font-size:20px;" class="text-warning" data-toggle="modal" data-target="#exampleModal-{{ $comment->id }}">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal-{{ $comment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Message</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('comment.update',$comment->id)}}" method="POST">
+                                                        @csrf 
+                                                        @method('PUT')
+
+                                                        <textarea name="body" class="form-control" style="padding: 10px 20px;" >{{ $comment->body }}</textarea>
+                                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                                        </div>
+                                                    </form>
+                                                 
+                                                </div>
+                                                
+                                                </div>
+                                            </div>
+                                            </div>
+                                            /
+
+                                            <form onsubmit="return confirm('Xabar haqiqatdan ham o\'chsinmi!')" action="{{ route('comment.destroy',$comment->id)}}" method="POST">
+                                                @csrf 
+                                                @method('DELETE')
+                                                 
+                                                <button type="submit" class="text-danger" style="background-color: white; border:none">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                                
+                                            </form>
+                                           
+                                        @endcanany
+                                       
+                                    </h6>
                                     <p>{{ $comment->body }}</p>
                                     <button class="btn btn-sm btn-light">Reply</button>
                                 </div>
@@ -57,6 +109,15 @@
                     </div>
 
                     <div class="bg-light rounded p-5">
+
+                        @if(Session::has('updated'))
+                            <div class="alert alert-warning">{{ Session::get('updated') }}</div>
+                        @endif 
+
+                        @if(Session::has('deleted'))
+                            <div class="alert alert-danger">{{ Session::get('deleted' )}}</div>
+                        @endif
+
                         <h3 class="mb-4 section-title">Izohni qoldiring</h3>
 
                         @auth

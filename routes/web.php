@@ -37,9 +37,8 @@ Route::get('/popular/posts',[PageController::class, 'popularPosts'])->name('popu
 
 //AuthController
 Route::get('/register/page',[AuthController::class, 'registerPage'])->name('register.page');
-Route::post('/register/save',[AuthController::class, 'registerSave'])->name('register.save');
-Route::get('/login/page',[AuthController::class, 'loginPage'])->name('login.page');
-Route::post('/login/check',[AuthController::class, 'loginCheck'])->name('login.check');
+Route::post('/register/save',[AuthController::class, 'registerSave'])->name('register.save')->middleware('throttle:3');
+
 
 //HomeController 
 Route::get('/ksfjfnvkdkwe5485rnfk/home',[HomeController::class, 'index'])->name('home.page')->middleware('auth');

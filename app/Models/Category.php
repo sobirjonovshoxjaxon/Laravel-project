@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category','slug'];
+    protected $fillable = ['category','slug','user_id'];
 
     //Connect Post Model 
     public function posts(){

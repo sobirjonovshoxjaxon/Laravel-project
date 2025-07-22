@@ -9,7 +9,10 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tag'];
+    protected $fillable = [
+        'user_id',
+        'tag',
+    ];
 
     //Connect Post Model 
     public function posts(){

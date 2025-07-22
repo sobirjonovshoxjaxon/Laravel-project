@@ -16,6 +16,8 @@ class CategoryController extends Controller
     public function __construct(){
         
         $this->middleware('auth');
+        $this->authorizeResource(Category::class, 'category');
+        $this->middleware('password.confirm')->except(['index','show']);
     }
 
 

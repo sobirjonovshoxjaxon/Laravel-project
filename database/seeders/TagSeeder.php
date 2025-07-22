@@ -14,21 +14,27 @@ class TagSeeder extends Seeder
     public function run(): void
     {
         Tag::create([
+            'user_id' => '1',
             'tag' => 'Xokim',
         ]);
         Tag::create([
+            'user_id' => '1',
             'tag' => 'Yangiliklar',
         ]);
         Tag::create([
+            'user_id' => '1',
             'tag' => 'Samolyot',
         ]);
         Tag::create([
+            'user_id' => '1',
             'tag' => 'IT yangiliklar',
         ]);
         Tag::create([
+            'user_id' => '1',
             'tag' => 'Texnologiya',
         ]);
         Tag::create([
+            'user_id' => '1',
             'tag' => 'shohjahon',
         ]);
     }
