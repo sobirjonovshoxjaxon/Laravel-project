@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Events\PostCreated;
 use App\Events\PostUpdated;
 use App\Events\PostDeleted;
+use App\Jobs\ChangePost;
 
 
 class PostController extends Controller
@@ -71,6 +72,9 @@ class PostController extends Controller
 
         //Event 
         PostCreated::dispatch($post);
+
+        //Job 
+        ChangePost::dispatch($post);
         
         return to_route('posts.index')->with('created','Post created successfully');
     }
