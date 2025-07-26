@@ -13,6 +13,8 @@ use App\Events\PostCreated;
 use App\Events\PostUpdated;
 use App\Events\PostDeleted;
 use App\Jobs\ChangePost;
+use Mail;
+use App\Mail\PostCreated as PostCreatedMail;
 
 
 class PostController extends Controller
@@ -75,6 +77,9 @@ class PostController extends Controller
 
         //Job 
         ChangePost::dispatch($post);
+
+        //Mail 
+        Mail::to($request->user())->queue((new PostCreatedMail($post))->onQueue('sending-mails'));
         
         return to_route('posts.index')->with('created','Post created successfully');
     }
